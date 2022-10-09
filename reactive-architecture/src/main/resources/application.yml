@@ -1,0 +1,21 @@
+
+spring:
+  main:
+    $allow-bean-definition-overriding: true
+    banner-mode: off
+  r2dbc:
+    #url: r2dbc:pool:mysql://localhost:3306/prueba?useUnicode=true&characterEncoding=UTF-8&useSSL=false&useLocalSessionState=true
+    #&useTimezone=true&serverTimezone=UTC
+    url: r2dbc:mysql://localhost:3306/prueba?useUnicode=true&characterEncoding=UTF-8&useSSL=false&useLocalSessionState=true&useTimezone=false
+    username: root
+    password: admin
+    pool:
+      enabled: false
+      max-size: 20
+      validation-query: SELECT 1
+      initial-size: 5
+      max-idle-time: 30m
+  data:
+    r2dbc:
+      repositories:
+        enabled: true
