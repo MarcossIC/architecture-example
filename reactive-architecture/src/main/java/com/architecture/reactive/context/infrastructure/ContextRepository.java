@@ -1,4 +1,4 @@
-package com.architecture.reactive.context.application;
+package com.architecture.reactive.context.infrastructure;
 
 import com.architecture.reactive.context.domain.Context;
 import org.springframework.data.repository.reactive.ReactiveSortingRepository;

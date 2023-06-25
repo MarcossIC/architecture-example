@@ -1,4 +1,4 @@
-package com.architecture.reactive.context.domain;
+package com.architecture.reactive.context.domain.ports;
 
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;

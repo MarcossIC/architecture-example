@@ -1,15 +1,10 @@
 package com.architecture.reactive.context.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-
-import javax.validation.constraints.NotEmpty;
+import lombok.Value;
 
 @Builder
-@Getter
-@AllArgsConstructor
+@Value
 public class ContextModel {
-    @NotEmpty
     private String contextName;
 }
