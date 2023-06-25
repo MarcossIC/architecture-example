@@ -1,16 +1,18 @@
-package com.architecture.ddd.context.infrastructure;
+package hexagonal.architecture.context.infrastructure;
 
-import com.architecture.ddd.context.domain.Context;
-import com.architecture.ddd.context.domain.ContextServicePort;
+import hexagonal.architecture.context.domain.Context;
+import hexagonal.architecture.context.domain.ContextServicePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static org.springframework.http.ResponseEntity.ok;
+
 
 @RestController
 @RequestMapping("/api/contexts")
@@ -22,9 +24,8 @@ public class GetAllContextResource {
         this.service = service;
     }
 
-    @GetMapping()
+    @GetMapping(produces= MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<List<Context>> getHello(){
-        var response = service.getAll();
-        return ok().body(response);
+        return ResponseEntity.ok().body(service.getAll());
     }
 }

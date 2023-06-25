@@ -1,6 +1,6 @@
-package com.architecture.ddd.context.infrastructure;
+package hexagonal.architecture.context.infrastructure;
 
-import com.architecture.ddd.context.domain.ContextServicePort;
+import hexagonal.architecture.context.domain.ContextServicePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.GetMapping;

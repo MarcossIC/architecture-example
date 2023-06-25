@@ -1,14 +1,12 @@
-package com.architecture.ddd.context.infrastructure;
+package hexagonal.architecture.context.infrastructure;
 
-import com.architecture.ddd.context.domain.ContextServicePort;
+import hexagonal.architecture.context.domain.ContextServicePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-
-import static org.springframework.http.ResponseEntity.created;
-import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/api/contexts")
@@ -23,6 +21,6 @@ public class SaveContextResource {
     @PostMapping("/{name}")
     public HttpEntity<Void> saveContext(@PathVariable String name){
         service.save(name);
-        return created(URI.create("http://localhost/api/contexts/"+name)).build();
+        return ResponseEntity.created(URI.create("http://localhost/api/contexts/"+name)).build();
     }
 }

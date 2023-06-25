@@ -1,12 +1,12 @@
-package com.architecture.ddd;
+package hexagonal.architecture;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ExampleDomainDriverDesign {
+public class ExampleHexagonalArchitecture {
 	public static void main(String[] args) {
-		SpringApplication.run(ExampleDomainDriverDesign.class, args);
+		SpringApplication.run(ExampleHexagonalArchitecture.class, args);
 	}
 
 }
