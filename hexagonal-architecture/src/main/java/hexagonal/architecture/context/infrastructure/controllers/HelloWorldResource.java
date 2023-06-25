@@ -1,6 +1,6 @@
-package hexagonal.architecture.context.infrastructure;
+package hexagonal.architecture.context.infrastructure.controllers;
 
-import hexagonal.architecture.context.domain.ContextServicePort;
+import hexagonal.architecture.context.domain.ports.ContextServicePort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ public class HelloWorldResource {
     }
 
     @GetMapping("/hello-world")
-    public HttpEntity<String> getHello(){
+    public HttpEntity<String> getHello() {
         return ok().body(service.getHelloWorld());
     }
 }

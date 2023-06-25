@@ -1,6 +1,7 @@
 package hexagonal.architecture.global.domain;
 
 import java.util.List;
+
 public interface EntityRepository {
     <T> T save(T entity);
 

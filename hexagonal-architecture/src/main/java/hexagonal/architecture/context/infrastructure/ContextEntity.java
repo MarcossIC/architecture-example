@@ -1,12 +1,9 @@
-package hexagonal.architecture.context.domain;
+package hexagonal.architecture.context.infrastructure;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -18,7 +15,7 @@ import java.io.Serializable;
 @Builder
 @Data
 
-public class Context implements Serializable {
+public class ContextEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -29,11 +26,4 @@ public class Context implements Serializable {
 
     @Column(name = "name")
     private String contextName;
-
-    public static Context toEntity(String name){
-        return Context.builder()
-                .contextName(name)
-                .build();
-    }
-
 }
