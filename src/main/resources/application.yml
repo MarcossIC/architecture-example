@@ -1,0 +1,43 @@
+---
+#Configuracion del Servidor
+enableLoggingRequestDetails: false
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+#Configuracion del log
+logging:
+  level:
+    root: INFO
+    web: DEBUG
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+  pattern:
+    dateformat: HH:mm:ss
+spring:
+  devtools:
+    add-properties: true
+  main:
+    allow-circular-references: true
+    #Quitar banner de Spring
+    banner-mode: off
+  #Base de datos
+  datasource:
+    password: admin
+    #
+    url: jdbc:mysql://localhost:3306/example?useSSL=false&useTimezone=true&serverTimezone=UTC
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #Aclaraciones para JPA
+  jpa:
+    #Lenguaje
+    database: MYSQL
+  #Configuraciones de email
+  mail:
+    username: marcoslopezdev18@gmail.com
+...
