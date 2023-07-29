@@ -1,4 +1,4 @@
-package hexagonal.architecture.user.domain;
+package hexagonal.architecture.user.application.input.dto;
 
 import lombok.Builder;
 import lombok.Value;
@@ -9,21 +9,16 @@ import javax.validation.constraints.NotEmpty;
 
 @Builder
 @Value
-public class UserModel {
-    @NotEmpty
-    String id;
-
+public class UserSaveDTO {
     @NotEmpty
     @Length(min = 3, max = 30)
     String username;
 
     @Email
-    @Length(max = 128)
+    @Length(max = 126)
     String email;
 
     @NotEmpty
-    @Length(min = 3, max = 20)
+    @Length(min = 3, max = 30)
     String password;
-
-
 }

@@ -1,7 +1,7 @@
-package hexagonal.architecture.user.infrastructure;
+package hexagonal.architecture.user.application.output.persistence;
 
-import hexagonal.architecture.user.domain.UserModel;
-import hexagonal.architecture.user.domain.UserSaveModel;
+import hexagonal.architecture.user.domain.model.User;
+import hexagonal.architecture.user.application.input.dto.UserSaveDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -36,7 +36,7 @@ public class UserEntity implements Serializable {
     @Column(name = "password", length = 20, nullable = false)
     private String password;
 
-    public static UserEntity saveModelToEntity(UserSaveModel model) {
+    public static UserEntity saveModelToEntity(UserSaveDTO model) {
         return UserEntity.builder()
                 .username(model.getUsername())
                 .email(model.getEmail())
@@ -44,8 +44,8 @@ public class UserEntity implements Serializable {
                 .build();
     }
 
-    public UserModel toModel() {
-        return UserModel.builder()
+    public User toModel() {
+        return User.builder()
                 .id(this.getId().toString())
                 .username(this.getUsername())
                 .email(this.getEmail())

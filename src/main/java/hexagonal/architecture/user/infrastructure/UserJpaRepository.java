@@ -1,10 +1,9 @@
-package hexagonal.architecture.user.infrastructure.persistence;
+package hexagonal.architecture.user.infrastructure;
 
-import hexagonal.architecture.user.infrastructure.UserEntity;
+import hexagonal.architecture.user.application.output.persistence.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 public interface UserJpaRepository extends JpaRepository<UserEntity, Long> {
-
     Boolean existsByEmail(String email);
+    UserEntity findUsById(Long id);
 }

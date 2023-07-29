@@ -1,4 +1,4 @@
-package hexagonal.architecture.user.domain;
+package hexagonal.architecture.user.domain.model;
 
 import lombok.Builder;
 import lombok.Value;
@@ -9,16 +9,19 @@ import javax.validation.constraints.NotEmpty;
 
 @Builder
 @Value
-public class UserSaveModel {
+public class User {
+    @NotEmpty
+    String id;
+
     @NotEmpty
     @Length(min = 3, max = 30)
     String username;
 
     @Email
-    @Length(max = 126)
+    @Length(max = 128)
     String email;
 
     @NotEmpty
-    @Length(min = 3, max = 30)
+    @Length(min = 3, max = 20)
     String password;
 }

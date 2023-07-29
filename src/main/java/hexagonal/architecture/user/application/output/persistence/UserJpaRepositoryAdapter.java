@@ -1,9 +1,8 @@
-package hexagonal.architecture.user.infrastructure.persistence;
+package hexagonal.architecture.user.application.output.persistence;
 
-import hexagonal.architecture.user.domain.UserModel;
-import hexagonal.architecture.user.domain.UserSaveModel;
-import hexagonal.architecture.user.domain.ports.UserRepository;
-import hexagonal.architecture.user.infrastructure.UserEntity;
+import hexagonal.architecture.user.domain.model.User;
+import hexagonal.architecture.user.application.input.dto.UserSaveDTO;
+import hexagonal.architecture.user.infrastructure.UserJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,12 +17,13 @@ public final class UserJpaRepositoryAdapter implements UserRepository {
     private final UserJpaRepository jpaRepository;
 
     @Override
-    public UserModel save(UserSaveModel model) {
+    public User save(UserSaveDTO model) {
         var entity = jpaRepository.saveAndFlush(UserEntity.saveModelToEntity(model));
         return entity.toModel();
     }
+
     @Override
-    public List<UserModel> getAllUsers() {
+    public List<User> getAllUsers() {
         return jpaRepository.findAll()
                 .stream()
                 .map(UserEntity::toModel)

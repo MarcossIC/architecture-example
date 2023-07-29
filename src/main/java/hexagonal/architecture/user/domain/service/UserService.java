@@ -1,9 +1,8 @@
-package hexagonal.architecture.user.application;
+package hexagonal.architecture.user.domain.service;
 
-import hexagonal.architecture.user.domain.UserModel;
-import hexagonal.architecture.user.domain.UserSaveModel;
-import hexagonal.architecture.user.domain.ports.UserRepository;
-import hexagonal.architecture.user.domain.ports.UserServicePort;
+import hexagonal.architecture.user.domain.model.User;
+import hexagonal.architecture.user.application.input.dto.UserSaveDTO;
+import hexagonal.architecture.user.application.output.persistence.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,13 +15,12 @@ public record UserService(UserRepository repository) implements UserServicePort 
     }
 
     @Override
-    public UserModel save(UserSaveModel model) {
+    public User save(UserSaveDTO model) {
         var userSaved = this.repository.save(model);
-
         return userSaved;
     }
     @Override
-    public List<UserModel> getAllContexts() {
+    public List<User> getAllContexts() {
         return this.repository.getAllUsers();
     }
 }
