@@ -16,8 +16,8 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/api/users")
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@RequestMapping("/api/v1/users")
+@RequiredArgsConstructor
 public final class SaveUserResource {
     private final UserServicePort service;
     private final ApplicationEventPublisher publisher;
