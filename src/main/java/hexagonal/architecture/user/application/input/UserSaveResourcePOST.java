@@ -5,7 +5,6 @@ import hexagonal.architecture.user.domain.service.UserServicePort;
 import hexagonal.architecture.user.application.output.email.UserSavedEvent;
 import hexagonal.architecture.user.infrastructure.UserCreatedStrategy;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
@@ -18,7 +17,7 @@ import java.net.URI;
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
-public final class SaveUserResource {
+public final class UserSaveResourcePOST {
     private final UserServicePort service;
     private final ApplicationEventPublisher publisher;
 
