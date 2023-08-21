@@ -1,3 +1,3 @@
 # Architecture Example
 
-Es el mismo pero utilizando el patron de cqrs
+Es este caso replico el ejemplo de la entidad usuario pero aplicando el patron CQRS

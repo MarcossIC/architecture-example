@@ -3,7 +3,7 @@ package hexagonal.architecture.cqrs.user.application.input;
 import hexagonal.architecture.cqrs.user.application.input.query.UserAllQuery;
 import hexagonal.architecture.cqrs.user.domain.model.User;
 import hexagonal.architecture.cqrs.user.domain.model.UserList;
-import hexagonal.architecture.shared.domain.query.QueryBus;
+import hexagonal.architecture.shared.domain.services.query.QueryBus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;

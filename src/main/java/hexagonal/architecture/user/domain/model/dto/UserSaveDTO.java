@@ -1,16 +1,15 @@
-package hexagonal.architecture.cqrs.user.application.input.commands;
+package hexagonal.architecture.user.domain.model.dto;
 
-import hexagonal.architecture.shared.domain.model.Command;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
-@Getter
 @Builder
-public class UserSaveCommand implements Command {
+@Value
+public class UserSaveDTO {
     @NotEmpty
     @Length(min = 3, max = 30)
     String username;

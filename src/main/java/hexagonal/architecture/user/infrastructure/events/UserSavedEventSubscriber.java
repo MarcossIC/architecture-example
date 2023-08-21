@@ -1,6 +1,7 @@
-package hexagonal.architecture.cqrs.user.application.output.email;
+package hexagonal.architecture.user.infrastructure.events;
 
 import hexagonal.architecture.shared.domain.services.MailService;
+import hexagonal.architecture.user.domain.events.UserSavedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;

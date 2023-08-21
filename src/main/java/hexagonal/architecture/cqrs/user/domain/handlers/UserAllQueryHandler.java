@@ -3,7 +3,7 @@ package hexagonal.architecture.cqrs.user.domain.handlers;
 import hexagonal.architecture.cqrs.user.application.input.query.UserAllQuery;
 import hexagonal.architecture.cqrs.user.application.output.persistence.UserRepository;
 import hexagonal.architecture.cqrs.user.domain.model.UserList;
-import hexagonal.architecture.shared.domain.query.QueryHandler;
+import hexagonal.architecture.shared.domain.services.query.QueryHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

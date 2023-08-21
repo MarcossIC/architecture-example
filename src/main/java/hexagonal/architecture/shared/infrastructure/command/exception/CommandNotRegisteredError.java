@@ -1,6 +1,6 @@
 package hexagonal.architecture.shared.infrastructure.command.exception;
 
-import hexagonal.architecture.shared.domain.command.Command;
+import hexagonal.architecture.shared.domain.model.Command;
 
 public final class CommandNotRegisteredError extends Exception {
     public CommandNotRegisteredError(Class<? extends Command> command) {

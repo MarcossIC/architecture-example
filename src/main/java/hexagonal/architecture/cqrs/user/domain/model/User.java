@@ -1,8 +1,7 @@
 package hexagonal.architecture.cqrs.user.domain.model;
 
-import hexagonal.architecture.shared.domain.query.Response;
+import hexagonal.architecture.shared.domain.model.Response;
 import lombok.Builder;
-import lombok.Value;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;

@@ -1,6 +1,6 @@
 package hexagonal.architecture.cqrs.user.application.input.query;
 
-import hexagonal.architecture.shared.domain.query.Query;
+import hexagonal.architecture.shared.domain.model.Query;
 import lombok.Builder;
 
 @Builder

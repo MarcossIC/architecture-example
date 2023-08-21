@@ -2,8 +2,8 @@ package hexagonal.architecture.cqrs.user.application.input;
 
 import hexagonal.architecture.cqrs.user.application.input.commands.UserSaveCommand;
 import hexagonal.architecture.cqrs.user.application.output.email.UserSavedEvent;
-import hexagonal.architecture.cqrs.user.infrastructure.UserCreatedStrategy;
-import hexagonal.architecture.shared.domain.command.CommandHandler;
+import hexagonal.architecture.cqrs.user.infrastructure.UserCreatedStrategyEmail;
+import hexagonal.architecture.shared.domain.services.command.CommandHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpEntity;
@@ -30,7 +30,7 @@ public final class UserSaveResourcePOST {
 
         publisher.publishEvent(new UserSavedEvent(
                 this,
-                    new UserCreatedStrategy(),
+                    new UserCreatedStrategyEmail(),
                     command.getUsername(),
                     command.getEmail()
                 )

@@ -1,4 +1,4 @@
-package hexagonal.architecture.cqrs.user.application.output.email;
+package hexagonal.architecture.user.domain.events;
 
 import hexagonal.architecture.shared.domain.util.EmailTemplateStrategy;
 import lombok.EqualsAndHashCode;
