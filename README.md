@@ -25,3 +25,5 @@ To comprehend how this works, it's important to consider two concepts, which are
 <p user-select="none" align="center">
   <img src="https://raw.githubusercontent.com/MarcossIC/architecture-example/main/architectureExample.png"/>
 </p>
+
+As evident in the image, communication can be achieved through "Ports" and "Adapters." To grasp the concept better, when we refer to a "port," we are talking about interfaces, and "adapters" are nothing more than the adaptation of a port, or in other words, an implementation of the interface. This is possible because if we define a port in the domain, its implementation can reside in either the infrastructure or the application. This is because the port is agnostic to how or where the adapter is implemented. Thus, we continue to adhere to the dependency rule since the domain continues to consume the domain port without needing to know the details of the implementation.
