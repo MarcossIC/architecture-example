@@ -16,7 +16,7 @@ Moving on to the application layer, this layer doesn't have knowledge of the inf
 
 The lowest layer in the hierarchy is the domain layer. Even though it's the lowest, it can be considered the most important because it contains all the domain logic or bussiness logic of your application, including models, interfaces, and any other utilities you may need.
 
-#Ports And Adapters
+# Ports And Adapters
 
 Some might wonder, "But what if the logic of use cases resides in the application layer, the repositories are in the domain layer, and the outgoing database connections are in the infrastructure layer? How do they communicate? Because in theory, according to the top-down dependency rule, the application and the domain are unaware of the infrastructure.
 
