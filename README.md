@@ -48,7 +48,9 @@ The concept of "vertical slicing" is based on dividing the project's structure i
 # Ports And Adapter Architecture + vertical slizing
 Once these concepts are understood, combining "vertical slicing" with "clean architecture" produces quite a favorable result. And this is the way I decided to apply it in this project:
 
-![image](https://github.com/MarcossIC/architecture-example/assets/112729111/46e062c8-f901-485f-aab4-41d1625a1d3f)
+<p user-select="none" align="center">
+  <img src="./imgs/vertizal_slizing_clean_architecture.jpg"/>
+</p>
 
 # Shared Context
 When we mention the concept of dividing by context, an additional feature that further enhances the effectiveness of combining "vertical slicing" and "clean architecture" is that different contexts should not have mutual awareness; in other words, they should function as independent modules. This practice significantly contributes to code quality. However, there may be instances where a class is needed in multiple contexts for specific reasons. To address this situation, it is recommended to incorporate the "Shared" module, where both domain and infrastructure folders would be included. This makes sense because there might be shared elements in these areas, even though having shared use cases would not be logical. The "Shared" context proves useful in these particular cases.
@@ -69,7 +71,7 @@ On the other hand, the 'Bus' pattern is a widely used architectural approach as 
 Therefore, with these two components, I can manage the received commands and queries. The handlers remain decoupled from the caller. Furthermore, by using the bus, I can ensure that the controller in the infrastructure layer directs the command or query to the corresponding handler in the application layer. This allows each component to remain decoupled and facilitates system modularity.
 
 <p user-select="none" align="center">
-  <img src="./cqrs_pattern.jpg"/>
+  <img src="./imgs/cqrs_pattern.jpg"/>
 </p>
 
 ### Consideraciones
