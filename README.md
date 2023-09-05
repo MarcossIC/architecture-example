@@ -1,5 +1,5 @@
-# Architectura Example
-Repository that shows an example of how to make a hexagonal architecture in Java following the SOLID principles
+# Clean Architectura Example
+Repository that shows an example of how to make a clean architecture in Java following the SOLID principles
 
 ## More Info
 The hexagonal architecture is generally divided into 3 layers of abstraction (although there are some cases where it's divided into 4, but 3 is the most common). These layers are typically referred to as "Domain," "Application," and "Infrastructure."
@@ -26,4 +26,24 @@ To comprehend how this works, it's important to consider two concepts, which are
   <img src="https://raw.githubusercontent.com/MarcossIC/architecture-example/main/architectureExample.png"/>
 </p>
 
-As evident in the image, communication can be achieved through "Ports" and "Adapters." To grasp the concept better, when we refer to a "port," we are talking about interfaces, and "adapters" are nothing more than the adaptation of a port, or in other words, an implementation of the interface. This is possible because if we define a port in the domain, its implementation can reside in either the infrastructure or the application. This is because the port is agnostic to how or where the adapter is implemented. Thus, we continue to adhere to the dependency rule since the domain continues to consume the domain port without needing to know the details of the implementation.
+As depicted in the image, communication can be achieved through "Ports" and "Adapters." To better grasp this concept, when we refer to a "port," we are essentially talking about interfaces. "Adapters," on the other hand, are nothing more than the adaptation of a port, in other words, an implementation of the interface. This flexibility exists because when we define a port in the domain layer, its implementation can reside in either the infrastructure or the application layer. This flexibility stems from the fact that the port remains agnostic to how or where  is implemented.
+
+Also, since the application and infrastructure layers are aware of the domain layer, they can consume these ports. Therefore, we continue to comply with the dependency rule, as the domain layer remains independent of the other layers while also serving as a bridge to communicate between the application and infrastructure layers.
+
+# Vertical Slizing 
+"Vertical slicing" is a technique that can be applied to virtually any software architecture and proves to be highly beneficial. But why is it applied and how does it work? The reason for employing this technique is quite straightforward. As a development project progresses and the number of files increases, there comes a point where navigating through all these files can become challenging and confusing when trying to find the one you need. This is where "vertical slicing" comes into play.
+
+**Horizontal Structure**
+<p user-select="none" align="center">
+  <img src="https://xurxodev.com/content/images/2017/02/Horizontal_Slice.png"/>
+</p>
+
+**Vertical Structure**. One way to do it might look like this
+<p user-select="none" align="center">
+  <img src="https://xurxodev.com/content/images/2017/03/Vertical-Slice.png"/>
+</p>
+
+The concept of "vertical slicing" is based on dividing the project's structure into multiple "slices." Each "slice" has the function of grouping a set of functionalities that are related by the same concept or feature. For example, in the hexagonal architecture, it can be implemented by creating three layers, which are the domain, the application, and the infrastructure. Each of these layers groups a set of functionalities. However, if we stop at this point, we still face the same problem because this separation alone is not sufficient. To address this issue more effectively, one of the best ways to apply "vertical slicing" is through the "contexts" or "entities" of your domain. This allows you, when entering and exploring the structure, to clearly identify the folder you need at a glance. This is because when adding extra functionality, the first thing you will encounter are the contexts, and you can be sure that what is within this group of functions is related only to this context. This way, you won't get confused or have unrelated classes mixed in that you may not need or want to see for this specific case.
+
+# Ports And Adapter Architecture + vertical slizing
+Once these concepts are understood, combining "vertical slicing" with "clean architecture" yields a quite favorable outcome.
