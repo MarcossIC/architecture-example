@@ -46,9 +46,25 @@ Also, since the application and infrastructure layers are aware of the domain la
 The concept of "vertical slicing" is based on dividing the project's structure into multiple "slices." Each "slice" has the function of grouping a set of functionalities that are related by the same concept or feature. For example, in the hexagonal architecture, it can be implemented by creating three layers, which are the domain, the application, and the infrastructure. Each of these layers groups a set of functionalities. However, if we stop at this point, we still face the same problem because this separation alone is not sufficient. To address this issue more effectively, one of the best ways to apply "vertical slicing" is through the "contexts" or "entities" of your domain. This allows you, when entering and exploring the structure, to clearly identify the folder you need at a glance. This is because when adding extra functionality, the first thing you will encounter are the contexts, and you can be sure that what is within this group of functions is related only to this context. This way, you won't get confused or have unrelated classes mixed in that you may not need or want to see for this specific case.
 
 # Ports And Adapter Architecture + vertical slizing
-Once these concepts are understood, combining "vertical slicing" with "clean architecture" yields a quite favorable outcome.
+Once these concepts are understood, combining "vertical slicing" with "clean architecture" produces quite a favorable result. And this is the way I decided to apply it in this project:
 
 ![image](https://github.com/MarcossIC/architecture-example/assets/112729111/46e062c8-f901-485f-aab4-41d1625a1d3f)
 
 # Shared Context
 When we mention the concept of dividing by context, an additional feature that further enhances the effectiveness of combining "vertical slicing" and "clean architecture" is that different contexts should not have mutual awareness; in other words, they should function as independent modules. This practice significantly contributes to code quality. However, there may be instances where a class is needed in multiple contexts for specific reasons. To address this situation, it is recommended to incorporate the "Shared" module, where both domain and infrastructure folders would be included. This makes sense because there might be shared elements in these areas, even though having shared use cases would not be logical. The "Shared" context proves useful in these particular cases.
+
+# CQRS (Command Query Responsability Segregation)
+CQRS, which stands for Command Query Responsibility Segregation, is an architectural pattern that focuses on separating read and write operations within a data store. Implementing CQRS in an application can have a positive impact on performance, scalability, and security. This is because in a conventional system, all operations interact with the same database, which can lead to overload when the requirements are high. By applying the CQRS pattern, these two aspects are separated, alleviating the load and preventing issues in one area from affecting the other. This, in turn, contributes to the resilience of the system, preventing the breakdown of one part from affecting the entire codebase.
+
+In this example, I have also applied the CQRS pattern by separating write and read operations. To achieve this, I've created a 'mirror' of the user context, allowing for a contrast between the CQRS approach and the more conventional one.
+
+To implement the CQRS pattern in this case, I've used the 'bus' and 'handler' patterns. These patterns simplify implementation and contribute to cleaner and decoupled code.
+
+A 'Handler' is a pattern used to manage events and execute the necessary logic to perform specific actions. In this context, they are used to handle both queries and commands, resulting in two types of handlers: 'Command Handler' and 'Query Handler.'
+
+On the other hand, the 'Bus' pattern is a widely used architectural approach as an intermediary for communicating and coordinating components or modules within an application. This pattern facilitates communication between different components without the need for tight coupling. It is also known as a 'Message Bus' or 'Event Bus.'
+
+Therefore, with these two components, I can manage the received commands and queries. The handlers remain decoupled from the caller. Furthermore, by using the bus, I can ensure that the controller in the infrastructure layer directs the command or query to the corresponding handler in the application layer. This allows each component to remain decoupled and facilitates system modularity.
+
+### Consideraciones
+However, implementing the CQRS pattern involves introducing what is known as 'accidental complexity.' But what does this term mean? Accidental complexity refers to the phenomenon that occurs when additional components are added to an architecture, causing that architecture to become more intricate. This can have implications, such as spending additional time incorporating new functionalities according to specific requirements. Furthermore, when integrating a new team member, they may require more time to become familiar with and adapt to working in that specific part of the architecture.
