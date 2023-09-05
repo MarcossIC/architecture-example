@@ -50,3 +50,5 @@ Once these concepts are understood, combining "vertical slicing" with "clean arc
 
 ![image](https://github.com/MarcossIC/architecture-example/assets/112729111/46e062c8-f901-485f-aab4-41d1625a1d3f)
 
+# Shared Context
+When we mention the concept of dividing by context, an additional feature that further enhances the effectiveness of combining "vertical slicing" and "clean architecture" is that different contexts should not have mutual awareness; in other words, they should function as independent modules. This practice significantly contributes to code quality. However, there may be instances where a class is needed in multiple contexts for specific reasons. To address this situation, it is recommended to incorporate the "Shared" module, where both domain and infrastructure folders would be included. This makes sense because there might be shared elements in these areas, even though having shared use cases would not be logical. The "Shared" context proves useful in these particular cases.
