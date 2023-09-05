@@ -47,3 +47,6 @@ The concept of "vertical slicing" is based on dividing the project's structure i
 
 # Ports And Adapter Architecture + vertical slizing
 Once these concepts are understood, combining "vertical slicing" with "clean architecture" yields a quite favorable outcome.
+
+![image](https://github.com/MarcossIC/architecture-example/assets/112729111/46e062c8-f901-485f-aab4-41d1625a1d3f)
+
