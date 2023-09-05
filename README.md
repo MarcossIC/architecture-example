@@ -60,11 +60,17 @@ In this example, I have also applied the CQRS pattern by separating write and re
 
 To implement the CQRS pattern in this case, I've used the 'bus' and 'handler' patterns. These patterns simplify implementation and contribute to cleaner and decoupled code.
 
+### Handler
 A 'Handler' is a pattern used to manage events and execute the necessary logic to perform specific actions. In this context, they are used to handle both queries and commands, resulting in two types of handlers: 'Command Handler' and 'Query Handler.'
 
+### Bus
 On the other hand, the 'Bus' pattern is a widely used architectural approach as an intermediary for communicating and coordinating components or modules within an application. This pattern facilitates communication between different components without the need for tight coupling. It is also known as a 'Message Bus' or 'Event Bus.'
 
 Therefore, with these two components, I can manage the received commands and queries. The handlers remain decoupled from the caller. Furthermore, by using the bus, I can ensure that the controller in the infrastructure layer directs the command or query to the corresponding handler in the application layer. This allows each component to remain decoupled and facilitates system modularity.
+
+<p user-select="none" align="center">
+  <img src="./cqrs_pattern.jpg"/>
+</p>
 
 ### Consideraciones
 However, implementing the CQRS pattern involves introducing what is known as 'accidental complexity.' But what does this term mean? Accidental complexity refers to the phenomenon that occurs when additional components are added to an architecture, causing that architecture to become more intricate. This can have implications, such as spending additional time incorporating new functionalities according to specific requirements. Furthermore, when integrating a new team member, they may require more time to become familiar with and adapt to working in that specific part of the architecture.
