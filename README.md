@@ -68,11 +68,18 @@ A 'Handler' is a pattern used to manage events and execute the necessary logic t
 ### Bus
 On the other hand, the 'Bus' pattern is a widely used architectural approach as an intermediary for communicating and coordinating components or modules within an application. This pattern facilitates communication between different components without the need for tight coupling. It is also known as a 'Message Bus' or 'Event Bus.'
 
+### Implementation
 Therefore, with these two components, I can manage the received commands and queries. The handlers remain decoupled from the caller. Furthermore, by using the bus, I can ensure that the controller in the infrastructure layer directs the command or query to the corresponding handler in the application layer. This allows each component to remain decoupled and facilitates system modularity.
 
 <p user-select="none" align="center">
   <img src="./imgs/cqrs_pattern.jpg"/>
 </p>
 
-### Consideraciones
-However, implementing the CQRS pattern involves introducing what is known as 'accidental complexity.' But what does this term mean? Accidental complexity refers to the phenomenon that occurs when additional components are added to an architecture, causing that architecture to become more intricate. This can have implications, such as spending additional time incorporating new functionalities according to specific requirements. Furthermore, when integrating a new team member, they may require more time to become familiar with and adapt to working in that specific part of the architecture.
+### Considerations with CQRS
+Another important aspect to consider is that the CQRS pattern is not suitable for implementation throughout an entire system, as it can introduce a significant amount of unnecessary complexity. Typically, it is applied to specific modules within an application, especially when the requirements for reading and writing differ significantly. For example, in a blog, the comments section is likely to have many more read operations than write operations. For this reason, it may be more convenient to scale the read operations while keeping the writing unchanged.
+
+Furthermore, the CQRS pattern is commonly used in microservices architectures, as it allows the system to be more resilient and specific components to be scaled as needed. However, this also brings with it common challenges in this architecture, such as the 'Eventual Consistency' problem. What does this mean? Well, it refers to situations where, for example, you have a business rule that requires information to be read only after it has been stored in the database. Sometimes, even if you have executed the command correctly in the write database, it may still not be possible to read the desired information in the read database due to various factors, such as delays, connection issues, or message queue congestion, among others. This can lead to issues because the databases have not yet completed synchronization.
+
+<p user-select="none" align="center">
+  <img src="./imgs/cqrs_microservices.jpg"/>
+</p>
