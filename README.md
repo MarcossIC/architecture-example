@@ -1,5 +1,5 @@
 # Clean Architectura Example
-Repository that shows an example of how to make a clean architecture in Java following the SOLID principles
+Repository that shows an example of how to make a clean architecture in Java following the SOLID principles. In addition, not only a simple hexagonal architecture is applied, but it is also applied together with a Vertical Slizing, in addition to applying it in two ways, one conventionally and another applying CQRS
 
 ## More Info
 The hexagonal architecture is generally divided into 3 layers of abstraction (although there are some cases where it's divided into 4, but 3 is the most common). These layers are typically referred to as "Domain," "Application," and "Infrastructure."
