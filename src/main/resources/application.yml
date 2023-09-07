@@ -20,23 +20,32 @@ logging:
   pattern:
     dateformat: HH:mm:ss
 spring:
-  devtools:
-    add-properties: true
   main:
-    allow-circular-references: true
     #Quitar banner de Spring
     banner-mode: off
   #Base de datos
   datasource:
-    password: admin
-    #
-    url: jdbc:mysql://localhost:3306/example?useSSL=false&useTimezone=true&serverTimezone=UTC
-    username: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ${DB_PASSWORD}
+    url: jdbc:mysql://localhost:3306/example?createDatabaseIfNotExist=true
+    username: ${DB_USER}
+    tomcat:
+      max-wait: 280000
+      max-active: 50
+      max-idle: 20
+      min-idle: 15
   #Aclaraciones para JPA
   jpa:
-    #Lenguaje
     database: MYSQL
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    properties:
+      hibernate:
+        dialect:
+          storage_engine: innodb
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
   #Configuraciones de email
   mail:
     username: marcoslopezdev18@gmail.com

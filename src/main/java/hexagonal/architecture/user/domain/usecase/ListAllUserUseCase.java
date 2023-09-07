@@ -1,6 +1,6 @@
 package hexagonal.architecture.user.domain.usecase;
 
-import hexagonal.architecture.user.domain.model.User;
+import hexagonal.architecture.user.domain.models.User;
 
 import java.util.List;
 

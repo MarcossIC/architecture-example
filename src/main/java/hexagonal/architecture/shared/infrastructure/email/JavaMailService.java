@@ -1,6 +1,6 @@
 package hexagonal.architecture.shared.infrastructure.email;
 
-import hexagonal.architecture.shared.domain.services.MailService;
+import hexagonal.architecture.shared.domain.services.email.MailService;
 import hexagonal.architecture.shared.domain.util.EmailTemplateStrategy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +16,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.util.Arrays;
 import java.util.stream.Stream;
+
 @Service
 @RequiredArgsConstructor
 public class JavaMailService implements MailService {

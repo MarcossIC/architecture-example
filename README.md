@@ -4,7 +4,7 @@ Repository that shows an example of how to make a clean architecture in Java fol
 ## More Info
 The hexagonal architecture is generally divided into 3 layers of abstraction (although there are some cases where it's divided into 4, but 3 is the most common). These layers are typically referred to as "Domain," "Application," and "Infrastructure."
 
-<p user-select="none" align="center">
+<p product-select="none" align="center">
   <img src="https://refactorizando.com/wp-content/uploads/2020/11/Arquitectura-Hexagonal.png"/>
 </p>
 
@@ -22,8 +22,8 @@ Some might wonder, "But what if the logic of use cases resides in the applicatio
 
 To comprehend how this works, it's important to consider two concepts, which are another way to refer to this architecture, and this is the "Ports and Adapters" architecture.
 
-<p user-select="none" align="center">
-  <img src="https://raw.githubusercontent.com/MarcossIC/architecture-example/main/architectureExample.png"/>
+<p product-select="none" align="center">
+  <img src="./imgs/ports_and_adapters.jpg"/>
 </p>
 
 As depicted in the image, communication can be achieved through "Ports" and "Adapters." To better grasp this concept, when we refer to a "port," we are essentially talking about interfaces. "Adapters," on the other hand, are nothing more than the adaptation of a port, in other words, an implementation of the interface. This flexibility exists because when we define a port in the domain layer, its implementation can reside in either the infrastructure or the application layer. This flexibility stems from the fact that the port remains agnostic to how or where  is implemented.
@@ -34,12 +34,12 @@ Also, since the application and infrastructure layers are aware of the domain la
 "Vertical slicing" is a technique that can be applied to virtually any software architecture and proves to be highly beneficial. But why is it applied and how does it work? The reason for employing this technique is quite straightforward. As a development project progresses and the number of files increases, there comes a point where navigating through all these files can become challenging and confusing when trying to find the one you need. This is where "vertical slicing" comes into play.
 
 **Horizontal Structure**
-<p user-select="none" align="center">
+<p product-select="none" align="center">
   <img src="https://xurxodev.com/content/images/2017/02/Horizontal_Slice.png"/>
 </p>
 
 **Vertical Structure**. One way to do it might look like this
-<p user-select="none" align="center">
+<p product-select="none" align="center">
   <img src="https://xurxodev.com/content/images/2017/03/Vertical-Slice.png"/>
 </p>
 
@@ -48,7 +48,7 @@ The concept of "vertical slicing" is based on dividing the project's structure i
 # Ports And Adapter Architecture + vertical slizing
 Once these concepts are understood, combining "vertical slicing" with "clean architecture" produces quite a favorable result. And this is the way I decided to apply it in this project:
 
-<p user-select="none" align="center">
+<p product-select="none" align="center">
   <img src="./imgs/vertizal_slizing_clean_architecture.jpg"/>
 </p>
 
@@ -58,7 +58,7 @@ When we mention the concept of dividing by context, an additional feature that f
 # CQRS (Command Query Responsability Segregation)
 CQRS, which stands for Command Query Responsibility Segregation, is an architectural pattern that focuses on separating read and write operations within a data store. Implementing CQRS in an application can have a positive impact on performance, scalability, and security. This is because in a conventional system, all operations interact with the same database, which can lead to overload when the requirements are high. By applying the CQRS pattern, these two aspects are separated, alleviating the load and preventing issues in one area from affecting the other. This, in turn, contributes to the resilience of the system, preventing the breakdown of one part from affecting the entire codebase.
 
-In this example, I have also applied the CQRS pattern by separating write and read operations. To achieve this, I've created a 'mirror' of the user context, allowing for a contrast between the CQRS approach and the more conventional one.
+In this example, I have also applied the CQRS pattern by separating write and read operations. To achieve this, I've created a 'mirror' of the product context, allowing for a contrast between the CQRS approach and the more conventional one.
 
 To implement the CQRS pattern in this case, I've used the 'bus' and 'handler' patterns. These patterns simplify implementation and contribute to cleaner and decoupled code.
 
@@ -71,7 +71,7 @@ On the other hand, the 'Bus' pattern is a widely used architectural approach as 
 ### Implementation
 Therefore, with these two components, I can manage the received commands and queries. The handlers remain decoupled from the caller. Furthermore, by using the bus, I can ensure that the controller in the infrastructure layer directs the command or query to the corresponding handler in the application layer. This allows each component to remain decoupled and facilitates system modularity.
 
-<p user-select="none" align="center">
+<p product-select="none" align="center">
   <img src="./imgs/cqrs_pattern.jpg"/>
 </p>
 
@@ -80,6 +80,7 @@ Another important aspect to consider is that the CQRS pattern is not suitable fo
 
 Furthermore, the CQRS pattern is commonly used in microservices architectures, as it allows the system to be more resilient and specific components to be scaled as needed. However, this also brings with it common challenges in this architecture, such as the 'Eventual Consistency' problem. What does this mean? Well, it refers to situations where, for example, you have a business rule that requires information to be read only after it has been stored in the database. Sometimes, even if you have executed the command correctly in the write database, it may still not be possible to read the desired information in the read database due to various factors, such as delays, connection issues, or message queue congestion, among others. This can lead to issues because the databases have not yet completed synchronization.
 
-<p user-select="none" align="center">
+In this way, a service with CQRS could be seen in a microservices architecture.
+<p product-select="none" align="center">
   <img src="./imgs/cqrs_microservices.jpg"/>
 </p>

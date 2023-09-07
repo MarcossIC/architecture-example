@@ -1,6 +1,6 @@
 package hexagonal.architecture.shared.domain.services.query;
 
-import hexagonal.architecture.shared.domain.model.Query;
+import hexagonal.architecture.shared.domain.model.query.Query;
 
 /**
  * QueryBus generico

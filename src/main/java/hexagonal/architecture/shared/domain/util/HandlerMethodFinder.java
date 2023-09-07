@@ -54,7 +54,7 @@ public class HandlerMethodFinder<T, V> {
      * @return Un nuevo objeto HandlerMethodFinder con los métodos del handler.
      */
     public static <T, V> HandlerMethodFinder<T, V> searchMethods(T handler) {
-        return new HandlerMethodFinder<>( Arrays.stream(handler.getClass().getMethods()).toList().stream() );
+        return new HandlerMethodFinder<>(Arrays.stream(handler.getClass().getMethods()).toList().stream());
     }
 
     /**

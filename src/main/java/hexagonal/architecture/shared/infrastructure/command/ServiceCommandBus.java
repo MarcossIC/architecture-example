@@ -1,7 +1,7 @@
 package hexagonal.architecture.shared.infrastructure.command;
 
 
-import hexagonal.architecture.shared.domain.model.Command;
+import hexagonal.architecture.shared.domain.model.command.Command;
 import hexagonal.architecture.shared.domain.services.command.CommandBus;
 import hexagonal.architecture.shared.domain.services.command.CommandHandler;
 import hexagonal.architecture.shared.domain.util.HandlerMethodFinder;

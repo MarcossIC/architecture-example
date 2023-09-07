@@ -1,14 +1,13 @@
 package hexagonal.architecture.user.infrastructure.persistence;
 
-import hexagonal.architecture.user.domain.repository.UserRepository;
-import hexagonal.architecture.user.domain.model.User;
-import hexagonal.architecture.user.domain.model.dto.UserSaveDTO;
+import hexagonal.architecture.user.domain.models.User;
+import hexagonal.architecture.user.domain.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 /**
  * Clase adaptadora permite tener una capa mas entre la aplicacion y JPA
@@ -16,36 +15,64 @@ import java.util.stream.Collectors;
  */
 @Repository
 @RequiredArgsConstructor
-public final class UserJpaRepositoryAdapter implements UserRepository {
+public class UserJpaRepositoryAdapter implements UserRepository {
     //Repositorio con los metodos de jpa
     private final UserJpaRepository jpaRepository;
 
-    //Otra forma de hacer el mapeo
-    private final Function<UserEntity, User> entityToModel = entity-> User.builder()
-            .id(entity.getId().toString())
-            .username(entity.getUsername())
-            .email(entity.getEmail())
-            .password(entity.getPassword())
-            .build();
+    @Override
+    public User save(User model) {
+        if (model == null) throw new IllegalArgumentException("The parameter in the repository cannot be null");
+        return jpaRepository
+                .save(UserEntity.modelToEntity(model))
+                .toModel();
+    }
 
     @Override
-    public User save(UserSaveDTO model) {
-        var entity = jpaRepository.saveAndFlush(UserEntity.saveModelToEntity(model));
-        //Transformo la entidad a modelo
-        return entity.toModel();
+    public void update(User model, String oldPassword) {
+        if (model == null) throw new IllegalArgumentException("The parameter in the repository cannot be null");
+
+        jpaRepository.findById(Long.valueOf(model.getId()))
+                .flatMap(user -> {
+
+                    user.setUsername(
+                            Optional.of( model.getUsername() )
+                                    .filter(username-> !user.getUsername().equals(username))
+                                    .filter(this::usernameIsNotInUse)
+                                    .orElse(user.getUsername())
+                    );
+                    user.setEmail(
+                            Optional.of( model.getEmail() )
+                                    .filter(email-> !email.equals(user.getEmail()) )
+                                    .filter(this::emailIsNotInUse)
+                                    .orElse(user.getEmail())
+                    );
+                    user.setPassword(
+                            Optional.of( model.getPassword() )
+                                    .filter(password-> !password.equals(user.getPassword()))
+                                    .filter(password-> !oldPassword.equals(password))
+                                    .filter(password-> oldPassword.equals(user.getPassword()))
+                                    .orElse(user.getPassword())
+                    );
+                    return Optional.of(user);
+                }).orElseThrow(() -> {
+                    throw new RuntimeException("User ID " + model.getId() + " is not registered");
+                });
+
+    }
+
+    private Boolean usernameIsNotInUse(String username){
+        return !jpaRepository.existsByUsername(username);
+    }
+
+    private Boolean emailIsNotInUse(String email){
+        return !jpaRepository.existsByEmail(email);
     }
 
     @Override
     public List<User> getAllUsers() {
         return jpaRepository.findAll()
                 .stream()
-                //.map(entityToModel::apply)
                 .map(UserEntity::toModel)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public Boolean emailAlreadyExists(String email) {
-        return jpaRepository.existsByEmail(email);
+                .toList();
     }
 }

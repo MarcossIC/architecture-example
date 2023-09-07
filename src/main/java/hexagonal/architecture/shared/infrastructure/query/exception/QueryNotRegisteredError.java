@@ -1,6 +1,6 @@
 package hexagonal.architecture.shared.infrastructure.query.exception;
 
-import hexagonal.architecture.shared.domain.model.Query;
+import hexagonal.architecture.shared.domain.model.query.Query;
 
 public final class QueryNotRegisteredError extends Exception {
     public QueryNotRegisteredError(Class<? extends Query> query) {

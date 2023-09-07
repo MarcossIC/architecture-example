@@ -1,10 +1,9 @@
 package hexagonal.architecture.shared.infrastructure.query;
 
-import hexagonal.architecture.shared.domain.query.*;
-import hexagonal.architecture.shared.domain.model.Query;
+import hexagonal.architecture.shared.domain.model.query.Query;
+import hexagonal.architecture.shared.domain.model.query.Response;
 import hexagonal.architecture.shared.domain.services.query.QueryBus;
 import hexagonal.architecture.shared.domain.services.query.QueryHandler;
-import hexagonal.architecture.shared.domain.model.Response;
 import hexagonal.architecture.shared.domain.util.HandlerMethodFinder;
 import hexagonal.architecture.shared.infrastructure.query.exception.QueryHandlerExecutionError;
 import hexagonal.architecture.shared.infrastructure.query.exception.QueryNotRegisteredError;

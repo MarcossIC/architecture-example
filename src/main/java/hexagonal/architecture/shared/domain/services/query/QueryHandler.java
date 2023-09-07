@@ -1,7 +1,7 @@
 package hexagonal.architecture.shared.domain.services.query;
 
-import hexagonal.architecture.shared.domain.model.Query;
-import hexagonal.architecture.shared.domain.model.Response;
+import hexagonal.architecture.shared.domain.model.query.Query;
+import hexagonal.architecture.shared.domain.model.query.Response;
 
 /**
  * QueryHandler Generico
